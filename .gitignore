@@ -1,0 +1,25 @@
+# Malware samples — never commit live binaries
+sample/installer_binary
+sample/*.dmg
+sample/*.app
+sample/*.zip
+*.macho
+*.MachO
+
+# Python
+__pycache__/
+*.py[cod]
+.Python
+.venv/
+venv/
+.env
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+
+# Optional local overrides
+*.local

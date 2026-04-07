@@ -1,0 +1,29 @@
+TARGETED APPLICATIONS & DATA
+==================================================
+
+BROWSERS (Chromium-based):
+  Chrome               path=Google/Chrome                  keychain='Chrome Safe Storage'
+  Brave                path=BraveSoftware/Brave-Browser    keychain='Brave Safe Storage'
+  Opera                path=default                        keychain='Opera Safe Storage'
+  Opera GX             path=default                        keychain='Opera Safe Storage 2023'
+  Vivaldi              path=default                        keychain='Vivaldi Safe Storage'
+  Microsoft Edge       path=default                        keychain='Microsoft Edge Safe Storage'
+  Arc                  path=Arc/User Data                  keychain=''
+  CocCoc               path=default                        keychain='CocCoc Safe Storage'
+
+STOLEN BROWSER DATA:
+  - Passwords  (SELECT origin_url, username_value, password_value FROM logins)
+  - Credit cards (SELECT name_on_card, card_number_encrypted, ... FROM credit_cards)
+  - Cookies    (SELECT host_key, name, value, encrypted_value, ... FROM cookies)
+  - Autofill   (SELECT name, value FROM autofill)
+  - History    (SELECT title, url, visit_count FROM urls)
+  - Tokens     (SELECT service, encrypted_token FROM token_service)
+
+OTHER TARGETS:
+  - macOS Keychain  (login.keychain-db)
+  - Apple Notes     (via AppleScript/OSAKit)
+  - Telegram Desktop (/Library/Application Support/Telegram Desktop/tdata)
+    Subdirs: working, user_data, dumps, webview
+
+CRYPTO WALLETS:
+  - /Documents/temp_data/Appssrc/utils.rs10.11El Capitan10.12Sierra10.13High Sierra10.14Mojave10.1511Big Sur1213Ventura14Sonoma15Sequoia16Innovation) /Documents/temp_data/Documents/temp_data.zipZippedzip by clizipzip errioreg-cIOPlatformExpertDeviceloxIOPlatformUUID/Applications/Ledger Live.appLedger/Applications/Trezor Suite.appTrezor/Documents/temp_data/Keychain/Library/Keychains/login.keychain-db/Library/Keychains/login.keychainLoading...

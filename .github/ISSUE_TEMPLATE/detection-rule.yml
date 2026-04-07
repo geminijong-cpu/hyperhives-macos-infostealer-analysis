@@ -1,0 +1,35 @@
+name: Detection rule improvement
+description: Suggest a new or improved YARA / Sigma rule
+title: "[Rule] "
+labels: ["detection", "triage"]
+body:
+  - type: dropdown
+    id: rule-type
+    attributes:
+      label: Rule format
+      options:
+        - YARA
+        - Sigma
+        - Other (Snort, Suricata, KQL, etc.)
+    validations:
+      required: true
+  - type: textarea
+    id: rule-content
+    attributes:
+      label: Rule or diff
+      description: Paste the full rule or a diff against the existing rule file.
+      render: yaml
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why is this rule needed? Does it reduce false positives, cover a new variant, or improve performance?
+    validations:
+      required: true
+  - type: textarea
+    id: testing
+    attributes:
+      label: Testing performed
+      description: How did you validate the rule? List tools and sample sets used.

@@ -1,0 +1,624 @@
+{
+  "type": "bundle",
+  "id": "bundle--7c9e4a1b-8d2f-5e6a-9b0c-1d2e3f4a5b6c",
+  "spec_version": "2.1",
+  "created": "2026-04-06T00:00:00.000Z",
+  "objects": [
+    {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "name": "Independent Malware Analysis Repository",
+      "identity_class": "organization",
+      "description": "Open-source threat intelligence from static malware analysis."
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "HyperHives macOS Infostealer",
+      "description": "Rust-compiled Mach-O universal binary (x86_64 + arm64) infostealer delivered via a fake job interview pipeline on Wellfound (AngelList). Operator persona 'Felix' from 'HyperHive' directed targets to visit hyperhives.net and check 'Settings > Diagnostics > Log', triggering curl | bash execution from macos.hyperhives.net. Variant internally labelled 'pussy stealer'. Build codename 'force', version 9.12.1. Targets browser credentials, crypto wallets (276 extension IDs), password managers, macOS Keychain, Apple Notes, and Telegram sessions. Uses Sentry SDK for operational telemetry.",
+      "malware_types": ["spyware", "trojan"],
+      "is_family": false,
+      "first_seen": "2026-04-06T00:00:00.000Z",
+      "architecture_execution_envs": ["x86-64", "arm64"],
+      "implementation_languages": ["Rust"],
+      "operating_system_refs": ["identity--apple-macos"],
+      "capabilities": [
+        "accesses-remote-machines",
+        "captures-input-peripherals",
+        "exfiltrates-data",
+        "steals-authentication-credentials"
+      ],
+      "sample_refs": ["malware-analysis--sample-sha256"]
+    },
+    {
+      "type": "infrastructure",
+      "spec_version": "2.1",
+      "id": "infrastructure--c2-cloudproxy-link",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "cloudproxy.link C2",
+      "description": "HTTPS command-and-control infrastructure with four endpoints: /m/opened (beacon), /m/metrics (telemetry), /m/decode (instruction channel), /db/debug (diagnostics). Receives multipart/form-data ZIP uploads of stolen data.",
+      "infrastructure_types": ["command-and-control"]
+    },
+    {
+      "type": "infrastructure",
+      "spec_version": "2.1",
+      "id": "infrastructure--delivery-hyperhives",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "macos.hyperhives.net delivery",
+      "description": "Delivery infrastructure hosting the install script and Mach-O binary. Served via Gcore CDN (81.28.12.12). Lure emails sent from collabs@hyperhives.net. Targets recruited via fake job posting on Wellfound (AngelList) by operator persona 'Felix' at company 'HyperHive', then directed to hyperhives.net to 'review the product' as a pretext for payload execution.",
+      "infrastructure_types": ["hosting-malware"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--sha256-sample",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "HyperHives Mach-O sample SHA-256",
+      "description": "SHA-256 hash of the Mach-O universal binary (8,504,768 bytes).",
+      "pattern": "[file:hashes.'SHA-256' = '5c7385c3a4d919d30e81d851d87068dfcc4d9c5489f1c2b06da6904614bf8dd3']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"],
+      "kill_chain_phases": [
+        { "kill_chain_name": "mitre-attack", "phase_name": "execution" }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--sha1-sample",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "HyperHives Mach-O sample SHA-1",
+      "pattern": "[file:hashes.'SHA-1' = '2de897066c2fc7db91da78d7f9ded99237345077']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--md5-sample",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "HyperHives Mach-O sample MD5",
+      "pattern": "[file:hashes.MD5 = '0e95ab4038ec48657563c96bed840dd5']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--c2-domain",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "cloudproxy.link C2 domain",
+      "description": "Primary C2 domain decrypted from the embedded configuration.",
+      "pattern": "[domain-name:value = 'cloudproxy.link']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"],
+      "kill_chain_phases": [
+        { "kill_chain_name": "mitre-attack", "phase_name": "command-and-control" }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--c2-url-opened",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "cloudproxy.link /m/opened beacon endpoint",
+      "pattern": "[url:value = 'https://cloudproxy.link/m/opened']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--c2-url-metrics",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "cloudproxy.link /m/metrics telemetry endpoint",
+      "pattern": "[url:value = 'https://cloudproxy.link/m/metrics']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--c2-url-decode",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "cloudproxy.link /m/decode config channel endpoint",
+      "pattern": "[url:value = 'https://cloudproxy.link/m/decode']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--c2-url-debug",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "cloudproxy.link /db/debug diagnostics endpoint",
+      "pattern": "[url:value = 'https://cloudproxy.link/db/debug']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--delivery-domain",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "macos.hyperhives.net delivery domain",
+      "description": "Hosted the initial install script and the Mach-O payload.",
+      "pattern": "[domain-name:value = 'macos.hyperhives.net']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"],
+      "kill_chain_phases": [
+        { "kill_chain_name": "mitre-attack", "phase_name": "initial-access" }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--delivery-parent-domain",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "hyperhives.net parent domain",
+      "pattern": "[domain-name:value = 'hyperhives.net']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--delivery-url-install",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "Delivery URL — install script",
+      "pattern": "[url:value = 'https://macos.hyperhives.net/install']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--delivery-url-binary",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "Delivery URL — Mach-O binary",
+      "pattern": "[url:value = 'https://macos.hyperhives.net/installer']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--delivery-ip",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "Delivery IP (Gcore CDN)",
+      "description": "Shared hosting IP; verify before blocking.",
+      "pattern": "[ipv4-addr:value = '81.28.12.12']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--lure-email",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "Lure email address",
+      "pattern": "[email-addr:value = 'collabs@hyperhives.net']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--sentry-dsn",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "Sentry DSN (operator telemetry)",
+      "description": "Decrypted Sentry DSN used by the malware for operational error tracking. Org ID 4509139651198976, Project ID 4509422649213008, EU region.",
+      "pattern": "[url:value = 'https://526eff9f8bb7aafd7117ca5e33a6a183@o4509139651198976.ingest.de.sentry.io/4509422649213008']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-04-06T00:00:00.000Z",
+      "indicator_types": ["malicious-activity"]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--t1204-002",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "name": "User Execution: Malicious File",
+      "external_references": [
+        { "source_name": "mitre-attack", "external_id": "T1204.002", "url": "https://attack.mitre.org/techniques/T1204/002/" }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--t1059-002",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "name": "Command and Scripting Interpreter: AppleScript",
+      "external_references": [
+        { "source_name": "mitre-attack", "external_id": "T1059.002", "url": "https://attack.mitre.org/techniques/T1059/002/" }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--t1555-001",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "name": "Credentials from Password Stores: Keychain",
+      "external_references": [
+        { "source_name": "mitre-attack", "external_id": "T1555.001", "url": "https://attack.mitre.org/techniques/T1555/001/" }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--t1539",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "name": "Steal Web Session Cookie",
+      "external_references": [
+        { "source_name": "mitre-attack", "external_id": "T1539", "url": "https://attack.mitre.org/techniques/T1539/" }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--t1005",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "name": "Data from Local System",
+      "external_references": [
+        { "source_name": "mitre-attack", "external_id": "T1005", "url": "https://attack.mitre.org/techniques/T1005/" }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--t1560",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "name": "Archive Collected Data",
+      "external_references": [
+        { "source_name": "mitre-attack", "external_id": "T1560", "url": "https://attack.mitre.org/techniques/T1560/" }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--t1041",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "name": "Exfiltration Over C2 Channel",
+      "external_references": [
+        { "source_name": "mitre-attack", "external_id": "T1041", "url": "https://attack.mitre.org/techniques/T1041/" }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--t1497",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "name": "Virtualization/Sandbox Evasion",
+      "external_references": [
+        { "source_name": "mitre-attack", "external_id": "T1497", "url": "https://attack.mitre.org/techniques/T1497/" }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--t1027",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "name": "Obfuscated Files or Information",
+      "external_references": [
+        { "source_name": "mitre-attack", "external_id": "T1027", "url": "https://attack.mitre.org/techniques/T1027/" }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--t1056",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "name": "Input Capture",
+      "external_references": [
+        { "source_name": "mitre-attack", "external_id": "T1056", "url": "https://attack.mitre.org/techniques/T1056/" }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--t1071-001",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "name": "Application Layer Protocol: Web Protocols",
+      "external_references": [
+        { "source_name": "mitre-attack", "external_id": "T1071.001", "url": "https://attack.mitre.org/techniques/T1071/001/" }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--t1082",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "name": "System Information Discovery",
+      "external_references": [
+        { "source_name": "mitre-attack", "external_id": "T1082", "url": "https://attack.mitre.org/techniques/T1082/" }
+      ]
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-uses-c2",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "uses",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "infrastructure--c2-cloudproxy-link"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-delivered-via",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "delivered-by",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "infrastructure--delivery-hyperhives"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-indicates-hash",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "indicates",
+      "source_ref": "indicator--sha256-sample",
+      "target_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--c2-indicator-infra",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "indicates",
+      "source_ref": "indicator--c2-domain",
+      "target_ref": "infrastructure--c2-cloudproxy-link"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--delivery-indicator-infra",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "indicates",
+      "source_ref": "indicator--delivery-domain",
+      "target_ref": "infrastructure--delivery-hyperhives"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-uses-t1204",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "uses",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "attack-pattern--t1204-002"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-uses-t1059",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "uses",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "attack-pattern--t1059-002"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-uses-t1555",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "uses",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "attack-pattern--t1555-001"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-uses-t1539",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "uses",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "attack-pattern--t1539"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-uses-t1005",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "uses",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "attack-pattern--t1005"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-uses-t1560",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "uses",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "attack-pattern--t1560"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-uses-t1041",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "uses",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "attack-pattern--t1041"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-uses-t1497",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "uses",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "attack-pattern--t1497"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-uses-t1027",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "uses",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "attack-pattern--t1027"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-uses-t1056",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "uses",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "attack-pattern--t1056"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-uses-t1071",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "uses",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "attack-pattern--t1071-001"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--malware-uses-t1082",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "relationship_type": "uses",
+      "source_ref": "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+      "target_ref": "attack-pattern--t1082"
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--hyperhives-full-analysis",
+      "created": "2026-04-06T00:00:00.000Z",
+      "modified": "2026-04-06T00:00:00.000Z",
+      "created_by_ref": "identity--a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "HyperHives macOS Infostealer — Full Technical Analysis",
+      "description": "Complete static analysis and decryption of a Rust-compiled macOS infostealer delivered through a fake job interview pipeline on Wellfound (AngelList). Operator persona 'Felix' at 'HyperHive' lured targets via multi-email social engineering. 571 embedded configuration values recovered through CPU emulation of 570 unique helper functions. C2 infrastructure (cloudproxy.link), Sentry operator telemetry, and 276 targeted Chrome extension IDs extracted. TTP alignment with DPRK Contagious Interview campaigns.",
+      "published": "2026-04-06T00:00:00.000Z",
+      "report_types": ["malware"],
+      "object_refs": [
+        "malware--d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90",
+        "infrastructure--c2-cloudproxy-link",
+        "infrastructure--delivery-hyperhives",
+        "indicator--sha256-sample",
+        "indicator--c2-domain",
+        "indicator--delivery-domain",
+        "indicator--sentry-dsn",
+        "indicator--lure-email",
+        "indicator--delivery-ip",
+        "attack-pattern--t1204-002",
+        "attack-pattern--t1059-002",
+        "attack-pattern--t1555-001",
+        "attack-pattern--t1539",
+        "attack-pattern--t1005",
+        "attack-pattern--t1560",
+        "attack-pattern--t1041",
+        "attack-pattern--t1497",
+        "attack-pattern--t1027",
+        "attack-pattern--t1056",
+        "attack-pattern--t1071-001",
+        "attack-pattern--t1082"
+      ]
+    }
+  ]
+}

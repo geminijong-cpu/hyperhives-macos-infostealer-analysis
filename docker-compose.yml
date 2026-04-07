@@ -1,0 +1,30 @@
+services:
+  lab:
+    build: .
+    container_name: malware-lab
+    # NO network access - fully air-gapped
+    network_mode: none
+    # Read-only root filesystem for extra safety
+    read_only: true
+    # Temp filesystems for tools that need to write
+    tmpfs:
+      - /tmp:size=512M
+      - /root:size=256M
+      - /run:size=64M
+    volumes:
+      # Sample is mounted read-only - cannot be modified or executed
+      - ./sample:/lab/sample:ro
+      # Output directory for your analysis results
+      - ./output:/lab/output:rw
+      # Scripts you write on your host appear live in the container
+      - ./scripts:/lab/scripts:rw
+    # Drop ALL capabilities, add back only what's needed
+    cap_drop:
+      - ALL
+    # Prevent privilege escalation
+    security_opt:
+      - no-new-privileges:true
+    # Run as root inside container (needed for tools) but isolated
+    stdin_open: true
+    tty: true
+    working_dir: /lab

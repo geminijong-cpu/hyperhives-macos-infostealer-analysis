@@ -1,0 +1,93 @@
+# =============================================================================
+# HyperHives macOS Rust Infostealer — Indicators of Compromise (IOCs)
+# Campaign: fake job interview on Wellfound / Contagious Interview–style delivery
+# Analysis: full static decryption (571 embedded config values)
+# Format: plain text for SIEM import, MISP, OpenCTI, copy-paste blocking lists
+# =============================================================================
+# Last updated: 2026-04-07
+# =============================================================================
+
+## FILE HASHES (Mach-O universal binary, x86_64 + arm64, ~8.5 MB)
+
+sha256:5c7385c3a4d919d30e81d851d87068dfcc4d9c5489f1c2b06da6904614bf8dd3
+sha1:2de897066c2fc7db91da78d7f9ded99237345077
+md5:0e95ab4038ec48657563c96bed840dd5
+
+## VIRUSTOTAL (9/63 detections at initial submission, April 2026)
+
+url:https://www.virustotal.com/gui/file/5c7385c3a4d919d30e81d851d87068dfcc4d9c5489f1c2b06da6904614bf8dd3
+vendor_name:HEUR:Trojan-PSW.OSX.HashBreaker.e
+vendor_name:Mac.PWS.JobStealer.1
+vendor_name:OSX/PSW.Agent.BX
+vendor_name:Trojan:MacOS/Stealer!AMTB
+vendor_name:MacOS:Stealer-BU [Trj]
+
+## NETWORK — C2 (decrypted from sample)
+
+domain:cloudproxy.link
+host:cloudproxy.link
+url:https://cloudproxy.link/m/opened
+url:https://cloudproxy.link/m/metrics
+url:https://cloudproxy.link/m/decode
+url:https://cloudproxy.link/db/debug
+
+## NETWORK — delivery / staging
+
+domain:macos.hyperhives.net
+domain:hyperhives.net
+url:https://macos.hyperhives.net/install
+url:https://macos.hyperhives.net/installer
+
+## NETWORK — victim geolocation (benign API abused by malware)
+
+url:https://freeipapi.com/api/json
+
+## IPv4 — delivery CDN (historical pivot; verify before blocking shared hosting)
+
+ip:81.28.12.12
+
+## EMAIL — lure
+
+email:collabs@hyperhives.net
+
+## SOCIAL ENGINEERING — lure context (hunting, not blocking)
+
+platform:Wellfound (formerly AngelList)
+persona:Felix
+company_name:HyperHive
+url:https://hyperhives.net
+string:Settings → Diagnostics → Log
+string:building the desktop version of Hyperhives across different operating systems
+
+## SENTRY — operator telemetry (subpoena / abuse-report target)
+
+url:https://526eff9f8bb7aafd7117ca5e33a6a183@o4509139651198976.ingest.de.sentry.io/4509422649213008
+sentry_org_id:4509139651198976
+sentry_project_id:4509422649213008
+sentry_public_key:526eff9f8bb7aafd7117ca5e33a6a183
+sentry_host:ingest.de.sentry.io
+
+## BUILD / EMBEDDED STRINGS (hunting, not blocking)
+
+string:/Users/rootr/.cargo/registry/
+string:build_namebuild_versionpers_password
+string:UPLD connect
+string:force9.12.1
+string:log_idipgeobuild_name
+
+## GITHUB OSINT (not an IOC — attribution pivot)
+
+url:https://github.com/rootr
+
+## MITRE ATT&CK (representative)
+
+T1566  T1204.002  T1059.002  T1059.004  T1555.001  T1555.003  T1539  T1005  T1560  T1041  T1497  T1027  T1056  T1071.001  T1082  T1016  T1553.001
+
+## NOTES
+
+# Targeted Chrome extension IDs (276) are machine-readable in:
+#   output/full_decrypted_config.json
+# Extension IDs identify *legitimate* wallet/password extensions whose local data was targeted.
+
+# Block/defend on: cloudproxy.link, macos.hyperhives.net, collabs@ hyperhives lure,
+# and monitor for the SHA-256 above on endpoints.

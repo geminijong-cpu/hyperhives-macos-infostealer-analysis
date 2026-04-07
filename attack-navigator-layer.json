@@ -1,0 +1,191 @@
+{
+  "name": "HyperHives macOS Infostealer — ATT&CK Coverage",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "MITRE ATT&CK techniques observed in the HyperHives macOS Rust infostealer sample (SHA-256: 5c7385c3a4d919d30e81d851d87068dfcc4d9c5489f1c2b06da6904614bf8dd3). Generated from static analysis and embedded-config decryption.",
+  "filters": {
+    "platforms": ["macOS"]
+  },
+  "sorting": 0,
+  "layout": {
+    "layout": "side",
+    "aggregateFunction": "average",
+    "showID": true,
+    "showName": true,
+    "showAggregateScores": false,
+    "countUnscored": false
+  },
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1204.002",
+      "tactic": "execution",
+      "color": "#ff6666",
+      "comment": "curl | bash delivery from macos.hyperhives.net invites user to execute malicious file.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1059.002",
+      "tactic": "execution",
+      "color": "#ff6666",
+      "comment": "AppleScript used for fake password dialog and Apple Notes exfiltration.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1059.004",
+      "tactic": "execution",
+      "color": "#ff6666",
+      "comment": "Unix shell (bash) used as initial execution vector via piped curl.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1555.001",
+      "tactic": "credential-access",
+      "color": "#ff6666",
+      "comment": "Extracts login.keychain-db using password harvested via fake dialog.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1555.003",
+      "tactic": "credential-access",
+      "color": "#ff6666",
+      "comment": "Decrypts Chromium browser saved passwords from Login Data SQLite DBs.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1539",
+      "tactic": "credential-access",
+      "color": "#ff6666",
+      "comment": "Steals browser cookies and session tokens from Chrome, Brave, Opera, Edge, Arc, CocCoc.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1005",
+      "tactic": "collection",
+      "color": "#ff9900",
+      "comment": "Collects crypto wallet data, Telegram sessions, Apple Notes, browser autofill/history.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1560",
+      "tactic": "collection",
+      "color": "#ff9900",
+      "comment": "Stages all stolen data under ~/Documents/temp_data/ and compresses to ZIP before exfil.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1560.002",
+      "tactic": "collection",
+      "color": "#ff9900",
+      "comment": "ZIP archive created via Rust zip crate for collected data.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1041",
+      "tactic": "exfiltration",
+      "color": "#cc0000",
+      "comment": "Exfiltrates ZIP archive via HTTPS POST (multipart/form-data) to cloudproxy.link C2.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1071.001",
+      "tactic": "command-and-control",
+      "color": "#cc0000",
+      "comment": "HTTPS C2 on cloudproxy.link with four endpoints (/m/opened, /m/metrics, /m/decode, /db/debug).",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1497",
+      "tactic": "defense-evasion",
+      "color": "#ffcc00",
+      "comment": "Detects virtual machines and reports is_vm flag to C2.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1027",
+      "tactic": "defense-evasion",
+      "color": "#ffcc00",
+      "comment": "570 unique XOR helper functions obfuscate embedded config (C2, Sentry DSN, target list).",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1056",
+      "tactic": "collection",
+      "color": "#ff9900",
+      "comment": "Fake macOS password dialog via AppleScript captures credentials.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1082",
+      "tactic": "discovery",
+      "color": "#ffcc00",
+      "comment": "Collects hardware info (IOPlatformExpertDevice/IOPlatformUUID) and OS version.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1016",
+      "tactic": "discovery",
+      "color": "#ffcc00",
+      "comment": "Queries freeipapi.com for victim IP address and geolocation.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1566",
+      "tactic": "initial-access",
+      "color": "#ff6666",
+      "comment": "Social engineering email from collabs@hyperhives.net with curl | bash link.",
+      "score": 100,
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1553.001",
+      "tactic": "defense-evasion",
+      "color": "#ffcc00",
+      "comment": "Bypasses Gatekeeper via xattr -c on downloaded binary.",
+      "score": 100,
+      "enabled": true
+    }
+  ],
+  "gradient": {
+    "colors": ["#ffffff", "#ff6666"],
+    "minValue": 0,
+    "maxValue": 100
+  },
+  "legendItems": [
+    { "label": "Observed technique", "color": "#ff6666" },
+    { "label": "Collection / Staging", "color": "#ff9900" },
+    { "label": "Exfiltration / C2", "color": "#cc0000" },
+    { "label": "Defense Evasion / Discovery", "color": "#ffcc00" }
+  ],
+  "metadata": [
+    { "name": "sample_sha256", "value": "5c7385c3a4d919d30e81d851d87068dfcc4d9c5489f1c2b06da6904614bf8dd3" },
+    { "name": "malware_family", "value": "HyperHives macOS Infostealer" },
+    { "name": "analysis_date", "value": "2026-04-06" },
+    { "name": "analysis_source", "value": "https://github.com/Darksp33d/hyperhives-macos-infostealer-analysis" }
+  ],
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#dddddd",
+  "selectTechniquesAcrossTactics": true,
+  "selectSubtechniquesWithParent": false,
+  "selectVisibleTechniques": false
+}

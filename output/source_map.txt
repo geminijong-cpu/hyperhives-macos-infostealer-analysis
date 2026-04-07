@@ -1,0 +1,127 @@
+MALWARE SOURCE CODE STRUCTURE
+==================================================
+
+Compiled by: /Users/rootr/ (macOS)
+Toolchain:   rustc 1.87.0 stable
+Sentry SDK:  0.36.0
+
+MALWARE OWN SOURCE FILES:
+  src/ahocorasick.rs
+  src/array.rs
+  src/arrayvec.rs
+  src/automaton.rs
+  src/base.rs
+  src/baseline.rs
+  src/boolean.rs
+  src/browsers.rs
+  src/browsers/chrome/modules.rs
+  src/browsers/chrome/modules/datas.rs
+  src/browsers/chrome/modules/decryptors.rs
+  src/builders.rs
+  src/bytes.rs
+  src/bytes_mut.rs
+  src/capture.rs
+  src/certificate.rs
+  src/client.rs
+  src/clientoptions.rs
+  src/condvar.rs
+  src/connect.rs
+  src/consts.rs
+  src/data.rs
+  src/date.rs
+  src/debug.rs
+  src/declare.rs
+  src/decompose.rs
+  src/defaults.rs
+  src/dfa.rs
+  src/dictionary.rs
+  src/dsn.rs
+  src/dynamic_store.rs
+  src/encode.rs
+  src/error.rs
+  src/fmt.rs
+  src/format.rs
+  src/function.rs
+  src/gb18030.rs
+  src/guts.rs
+  src/handles.rs
+  src/headers.rs
+  src/helper.rs
+  src/host.rs
+  src/hub.rs
+  src/id.rs
+  src/identity.rs
+  src/images.rs
+  src/imp_std.rs
+  src/inline_lazy.rs
+  src/integration.rs
+  src/iso_2022_jp.rs
+  src/legacy.rs
+  src/lib.rs
+  src/line.rs
+  src/lookups.rs
+  src/main.rs
+  src/map.rs
+  src/matcher.rs
+  src/mem.rs
+  src/method.rs
+  src/nix.rs
+  src/number.rs
+  src/offset_date_time.rs
+  src/oneshot.rs
+  src/panicking.rs
+  src/parking_lot.rs
+  src/parse.rs
+  src/parser.rs
+  src/path.rs
+  src/perfect_hash.rs
+  src/performance.rs
+  src/policy.rs
+  src/proxy.rs
+  src/punycode.rs
+  src/pussy/modules/tg.rs
+  src/read.rs
+  src/rt.rs
+  src/runtime.rs
+  src/secure_transport.rs
+  src/ser.rs
+  src/session.rs
+  src/slice.rs
+  src/socket.rs
+  src/statement.rs
+  src/str.rs
+  src/string.rs
+  src/sync.rs
+  src/time.rs
+  src/tinyvec.rs
+  src/trust.rs
+  src/unicode.rs
+  src/unit.rs
+  src/unix.rs
+  src/utf8.rs
+  src/utf_8.rs
+  src/util.rs
+  src/utils.rs
+  src/uts46.rs
+  src/v0.rs
+  src/value.rs
+  src/version.rs
+  src/write.rs
+  src/zio.rs
+  src/zipcrypto.rs
+
+MODULE TREE:
+  src/
+  ├── main.rs              (entry point)
+  ├── consts.rs            (encrypted config: C2 URL, Sentry DSN, build info)
+  ├── utils.rs             (utility functions)
+  ├── browsers.rs          (browser enumeration)
+  ├── browsers/
+  │   └── chrome/
+  │       ├── modules.rs       (profile discovery)
+  │       └── modules/
+  │           ├── datas.rs      (SQL data extraction)
+  │           └── decryptors.rs (credential decryption)
+  └── pussy/
+      └── modules/
+          └── tg.rs         (Telegram session theft)

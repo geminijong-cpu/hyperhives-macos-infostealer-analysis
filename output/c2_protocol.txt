@@ -1,0 +1,42 @@
+C2 COMMUNICATION PROTOCOL
+==================================================
+
+EXFILTRATION FIELDS:
+  log_id          - Unique log/victim identifier
+  ip              - Victim's IP address
+  geo             - Geolocation data
+  build_name      - Malware campaign name
+  build_version   - Malware variant version
+  pers_password   - Password from fake dialog (if entered)
+  passwords       - Stolen browser passwords
+  wallets         - Crypto wallet data
+  credits         - Stolen credit cards
+  autofills       - Browser autofill data
+  is_vm           - Virtual machine detection flag
+  hardwares       - System hardware info
+  force_mode      - Operational mode flag
+  uid             - Unique victim ID
+
+JSON KEYS (for HTTP POST):
+  buildName, buildVersion, uid
+
+UPLOAD:
+  Method:       HTTP POST multipart/form-data
+  Content-Type: application/zip
+  Protocol:     'UPLD connect'
+
+ERROR MESSAGES:
+  'Cannot connect to the server...'
+  'Please use VPN and retry.'
+  'ERROR ARC. TRYING AGAIN'
+  'Failed building the Runtime'
+
+DATA STAGING:
+  ~/Documents/temp_data/
+  ├── Keychain/Keychain.txt
+  ├── Cards.txt
+  ├── Tokens.txt
+  ├── Cookies/
+  ├── Apps/Telegram/
+  ├── Notes/
+  └── Application/

@@ -1,0 +1,22 @@
+name: General issue
+description: Report a bug, ask a question, or suggest an improvement
+title: "[General] "
+labels: ["triage"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the issue, question, or suggestion.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce (if applicable)
+      description: Ordered steps to reproduce the problem.
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Screenshots, log output, links, or environment details.

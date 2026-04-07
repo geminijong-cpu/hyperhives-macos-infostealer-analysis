@@ -1,0 +1,47 @@
+name: IOC update or addition
+description: Submit new indicators of compromise related to the HyperHives campaign
+title: "[IOC] "
+labels: ["ioc", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to report new domains, IPs, hashes, or other IOCs
+        tied to the HyperHives / cloudproxy.link campaign.
+  - type: dropdown
+    id: ioc-type
+    attributes:
+      label: IOC type
+      options:
+        - Domain / URL
+        - File hash (SHA-256, SHA-1, MD5)
+        - IP address
+        - Email address
+        - STIX / MISP object
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: ioc-value
+    attributes:
+      label: IOC value(s)
+      description: One indicator per line. Include hash algorithm prefix where applicable.
+      placeholder: |
+        sha256:abc123...
+        domain:evil.example.com
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and sourcing
+      description: Where did you observe this indicator? Link to any public reports or sandboxes.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety acknowledgement
+      options:
+        - label: I confirm this issue does not contain live malware, exploit code, or PII.
+          required: true

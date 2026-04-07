@@ -1,0 +1,88 @@
+{
+  "malware_family": "Rust macOS Infostealer (pussy stealer variant)",
+  "attribution": "Likely DPRK / Contagious Interview campaign",
+  "virustotal": {
+    "report": "https://www.virustotal.com/gui/file/5c7385c3a4d919d30e81d851d87068dfcc4d9c5489f1c2b06da6904614bf8dd3",
+    "detection_ratio": "9/63",
+    "detection_date": "2026-04",
+    "vendor_names": {
+      "Kaspersky": "HEUR:Trojan-PSW.OSX.HashBreaker.e",
+      "DrWeb": "Mac.PWS.JobStealer.1",
+      "ESET-NOD32": "OSX/PSW.Agent.BX Trojan",
+      "Microsoft": "Trojan:MacOS/Stealer!AMTB",
+      "Avast": "MacOS:Stealer-BU [Trj]",
+      "AVG": "MacOS:Stealer-BU [Trj]",
+      "Elastic": "Malicious (high Confidence)",
+      "Cynet": "Malicious (score: 99)",
+      "SentinelOne": "Static AI - Suspicious Mach-O"
+    }
+  },
+  "hashes": {
+    "sha256": "5c7385c3a4d919d30e81d851d87068dfcc4d9c5489f1c2b06da6904614bf8dd3",
+    "md5": "0e95ab4038ec48657563c96bed840dd5",
+    "sha1": "2de897066c2fc7db91da78d7f9ded99237345077"
+  },
+  "file_info": {
+    "type": "Mach-O universal binary (x86_64 + arm64)",
+    "size_bytes": 8504768,
+    "compiler": "rustc 1.87.0 stable",
+    "build_user": "rootr",
+    "build_os": "macOS (Darwin)"
+  },
+  "social_engineering": {
+    "lure_platform": "Wellfound (formerly AngelList)",
+    "operator_persona": "Felix",
+    "company_name": "HyperHive",
+    "lure_website": "https://hyperhives.net",
+    "payload_trigger": "Settings → Diagnostics → Log on hyperhives.net",
+    "pretext": "Fake job interview with product review before scheduled call",
+    "initial_contact_date": "2026-04-04",
+    "fake_interview_date": "2026-04-08T15:00:00Z"
+  },
+  "infrastructure": {
+    "delivery_domain": "macos.hyperhives.net",
+    "delivery_url": "https://macos.hyperhives.net/install",
+    "binary_url": "https://macos.hyperhives.net/installer",
+    "lure_website": "https://hyperhives.net",
+    "email": "collabs@hyperhives.net",
+    "registrar": "Tucows (via Tiered Access WHOIS)",
+    "hosting": "Gcore CDN (81.28.12.12)",
+    "github_account": "github.com/rootr (Geneva, zero repos)"
+  },
+  "capabilities": [
+    "Browser password theft (Chrome, Brave, Opera, Edge, Vivaldi, Arc, CocCoc)",
+    "Credit card extraction from browser databases",
+    "Cookie theft",
+    "Autofill data extraction",
+    "Browser token theft",
+    "macOS Keychain extraction",
+    "Apple Notes exfiltration (via AppleScript)",
+    "Telegram Desktop session theft",
+    "Cryptocurrency wallet targeting",
+    "VM detection",
+    "Data staging to ~/Documents/temp_data/",
+    "ZIP compression and HTTP exfiltration",
+    "Sentry error tracking for reliability",
+    "Gatekeeper bypass via xattr -c",
+    "Fake password dialog via AppleScript"
+  ],
+  "mitre_attack": [
+    "T1566 - Phishing (fake job interview on Wellfound)",
+    "T1204.002 - User execution of malicious file",
+    "T1059.002 - AppleScript execution",
+    "T1059.004 - Unix shell (curl | bash)",
+    "T1555.001 - Keychain credential access",
+    "T1555.003 - Credentials from web browsers",
+    "T1539 - Browser cookie theft",
+    "T1005 - Data from local system",
+    "T1560 - Archive collected data (ZIP)",
+    "T1041 - Exfiltration over C2 channel",
+    "T1071.001 - Application layer protocol: web protocols",
+    "T1497 - Virtualization/Sandbox evasion",
+    "T1027 - Obfuscated files or information",
+    "T1056 - Input capture (fake password dialog)",
+    "T1082 - System information discovery",
+    "T1016 - System network configuration discovery",
+    "T1553.001 - Subvert trust controls: Gatekeeper bypass"
+  ]
+}

@@ -1,0 +1,28 @@
+ENCRYPTED CONFIG BLOCK (src/consts.rs)
+==================================================
+
+Offset in binary: 0x2b85b5
+Block size: 256 bytes
+
+0x2b85b5: 2b fd d7 63 52 b1 28 12 33 99 5c a1 8f 7e af 64   +..cR.(.3.\..~.d
+0x2b85c5: 8c d8 af 8e 3a de 74 69 ca 7b c2 b2 49 e0 dd f9   ....:.ti.{..I...
+0x2b85d5: 18 1a 4e 1b f1 a2 ad bb f3 bc 83 cf 9f 65 f0 21   ..N..........e.!
+0x2b85e5: 9e 17 30 c8 26 a8 b9 70 76 5e 13 b8 0f 93 6f ca   ..0.&..pv^....o.
+0x2b85f5: 19 e5 c2 a4 4d 51 5a 96 7e 5b 0f c9 77 4f 63 52   ....MQZ.~[..wOcR
+0x2b8605: 33 74 3b 7d 7e 63 27 d1 9a 06 5f 94 5c e7 03 e5   3t;}~c'..._.\...
+0x2b8615: a8 5e ed a4 b4 7f 33 e8 96 36 72 7f 86 a2 bd 0d   .^....3..6r.....
+0x2b8625: 70 f0 4a 84 af a2 c4 91 87 4c b9 b7 f3 91 ad c2   p.J......L......
+0x2b8635: 94 77 ed bc e3 17 92 b6 bb 6f e6 be 56 34 43 eb   .w.......o..V4C.
+0x2b8645: cb 92 d2 6e dc 1b f1 df ca 56 0b d4 ab ab 50 96   ...n.....V....P.
+0x2b8655: fd 38 2b ba cd cc 0f 1a 94 0a 45 62 62 b3 d0 07   .8+.......Ebb...
+0x2b8665: 7d 1a f3 08 6c ea 0a f4 39 05 16 93 ad 4c cd 06   }...l...9....L..
+0x2b8675: 56 cd 4a a1 04 a9 a2 42 65 7a c6 e7 20 0a d3 39   V.J....Bez.. ..9
+0x2b8685: 0b eb 73 4a c2 80 40 d5 ae ef 4c 6e 32 98 93 84   ..sJ..@...Ln2...
+0x2b8695: f8 dc 21 05 8c a0 48 3a a0 c3 7f e5 85 69 72 bc   ..!...H:.....ir.
+0x2b86a5: ae 41 f7 01 af 5c 9c d1 cb a4 3b 1b 5a 90 fc 9b   .A...\....;.Z...
+
+NOTES:
+  This block likely contains the encrypted Sentry DSN and C2 URL.
+  The encryption scheme is NOT simple XOR (verified).
+  Likely AES-CBC or custom Rust-based encryption.
+  Use Ghidra to decompile the init/config functions to find the key.
